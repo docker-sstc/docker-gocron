@@ -42,9 +42,10 @@ RUN set -ex; \
 	apt-get update; \
 	DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
 		tini \
-		curl \
-		rsync \
+		iputils-ping \
 		dnsutils \
+		rsync \
+		curl \
 		jq \
 	; \
 	# In the mean time, install all famous script languages
@@ -63,7 +64,6 @@ RUN set -e; \
 
 ENTRYPOINT ["tini", "--"]
 
-ENV PATH=$PATH:/gocron
 # COPY --from=builder /tmp/gocron-linux-amd64/gocron /gocron/gocron
 # COPY --from=builder /tmp/gocron-node-linux-amd64/gocron-node /gocron/gocron-node
 COPY --from=builder /tmp/gocron/bin/gocron /gocron/gocron
@@ -71,8 +71,8 @@ COPY --from=builder /tmp/gocron/bin/gocron-node /gocron/gocron-node
 COPY --from=builder /tmp/certstrap /gocron/certstrap
 COPY gocron-all.sh /gocron/gocron-all.sh
 
-WORKDIR /app
-VOLUME [ "/gocron/conf", "/gocron/log", "/gocron/out", "/app" ]
+WORKDIR /gocron
+VOLUME [ "/gocron/conf", "/gocron/log", "/gocron/out" ]
 EXPOSE 5920
 EXPOSE 5921
 CMD ["gocron-all.sh"]

@@ -31,9 +31,8 @@ docker run -d --name gocron \
 # Step 3: Up gocron-node
 docker run -d --name gocron-node \
   -v /path/to/my-task-scripts:/app \
-  -w /app \
   --net host \
-  sstc/gocron:all gocron-node
+  sstc/gocron:all gocron-node -allow-root
 ```
 
 > Multiple nodes
@@ -71,11 +70,11 @@ docker restart gocron
 # Step 7: Copy necessary files in /path/to/out to hosts of worker nodes
 
 # Step 6: Go to hosts and run, do this multiple times to up all worker nodes
-docker run -d \
+docker run -d --name gocron-node \
   -v /path/to/out:/gocron/out \
   -v /path/to/my-task-scripts:/app \
   -p 5921:5921 \
-  sstc/gocron:all gocron-node \
+  sstc/gocron:all gocron-node -allow-root \
   -enable-tls \
   -ca-file /gocron/out/Root_CA.crt \
   -cert-file /gocron/out/1.2.3.4.crt \
