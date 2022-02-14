@@ -21,10 +21,10 @@ RUN set -ex; \
 	# tar -xvf gocron.tar.gz; \
 	cd gocron
 RUN set -ex; \
+	cd gocron; \
 	yarn config set ignore-engines true; \
 	make install-vue; \
-	make build-vue
-RUN	set -ex; \
+	make build-vue; \
 	make statik; \
 	CGO_ENABLED=0 make gocron; \
 	CGO_ENABLED=0 make node

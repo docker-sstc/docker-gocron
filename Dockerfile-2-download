@@ -1,4 +1,4 @@
-RUN set -e; \
+RUN set -ex; \
 	# curl -sSL ${GOCRON_DOWNLOAD_URL} -o gocron.tar.gz; \
 	# tar -xvf gocron.tar.gz; \
 	# curl -sSL ${GOCRON_NODE_DOWNLOAD_URL} -o gocron-node.tar.gz; \

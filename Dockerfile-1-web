@@ -1,4 +1,0 @@
-RUN set -ex; \
-	yarn config set ignore-engines true; \
-	make install-vue; \
-	make build-vue

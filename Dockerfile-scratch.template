@@ -1,6 +1,5 @@
 ${TEMPLATE_0}
 ${TEMPLATE_1}
-${TEMPLATE_2}
 
 FROM scratch
 

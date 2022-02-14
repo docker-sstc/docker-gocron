@@ -7,9 +7,8 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 ALL_IMAGE=sstc/headful-chromium:latest
 
 TEMPLATE_0=$(cat ./Dockerfile-0)
-TEMPLATE_1=$(cat ./Dockerfile-1-web)
-TEMPLATE_2=$(cat ./Dockerfile-2-make)
-TEMPLATE_3=$(cat ./Dockerfile-3-download)
+TEMPLATE_1=$(cat ./Dockerfile-1-build)
+TEMPLATE_2=$(cat ./Dockerfile-2-download)
 
 function generate() {
 	local template="$1"
@@ -20,7 +19,6 @@ function generate() {
 				TEMPLATE_0="$TEMPLATE_0" \
 				TEMPLATE_1="$TEMPLATE_1" \
 				TEMPLATE_2="$TEMPLATE_2" \
-				TEMPLATE_3="$TEMPLATE_3" \
 				envsubst >"$target"
 		echo "$target updated."
 	else

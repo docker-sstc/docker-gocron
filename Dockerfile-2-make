@@ -1,4 +1,0 @@
-RUN	set -ex; \
-	make statik; \
-	CGO_ENABLED=0 make gocron; \
-	CGO_ENABLED=0 make node
