@@ -35,9 +35,10 @@ COPY --from=builder /tmp/gocron/bin/gocron /gocron/gocron
 COPY --from=builder /tmp/gocron/bin/gocron-node /gocron/gocron-node
 COPY --from=builder /tmp/certstrap /gocron/certstrap
 COPY gocron-all.sh /gocron/gocron-all.sh
+COPY init-cert.sh /gocron/init-cert.sh
 
 WORKDIR /gocron
 VOLUME [ "/gocron/conf", "/gocron/log", "/gocron/out" ]
 EXPOSE 5920
 EXPOSE 5921
-CMD ["gocron-all.sh"]
+CMD ["/gocron/gocron-all.sh"]

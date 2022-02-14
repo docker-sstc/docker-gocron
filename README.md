@@ -41,12 +41,12 @@ docker run -d --name gocron-node \
 # Step 1: Create certs for main node
 docker run --rm \
   -v /path/to/out:/gocron/out \
-  sstc/gocron:all init-cert.sh
+  sstc/gocron:all ./init-cert.sh
 
 # Step 2: Create certs for worker nodes, do it multiple times with all ips of nodes
 docker run --rm \
   -v /path/to/out:/gocron/out \
-  sstc/gocron:all init-cert.sh 1.2.3.4
+  sstc/gocron:all ./init-cert.sh 1.2.3.4
 
 # Step 3: Up main node
 docker run -d --name gocron \
