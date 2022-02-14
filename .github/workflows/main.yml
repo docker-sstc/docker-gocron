@@ -1,0 +1,43 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - id: meta
+      uses: docker/metadata-action@v3
+      with:
+        images: |
+          sstc/gocron
+        tags: |
+          type=raw,value=latest
+          type=raw,value=scratch
+    - uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: :scratch
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        file: ./scratch/Dockerfile
+        tags: ${{ steps.meta.outputs.tags }}
+    - name: :all
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        file: ./all/Dockerfile
+        tags: sstc/gocron:all
+    - uses: actions/checkout@v2
+    - uses: christian-korneck/update-container-description-action@v1
+      env:
+        DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKER_PASS: ${{ secrets.DOCKERHUB_PASSWORD }}
+      with:
+        destination_container_repo: sstc/gocron
+        short_description: https://github.com/${{ github.repository }}
+    - uses: up9cloud/action-notify@master
+      if: cancelled() == false
+      env:
+        GITHUB_JOB_STATUS: ${{ job.status }}
+        TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
+        TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}

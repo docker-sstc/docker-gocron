@@ -1,0 +1,8 @@
+RUN set -e; \
+	# curl -sSL ${GOCRON_DOWNLOAD_URL} -o gocron.tar.gz; \
+	# tar -xvf gocron.tar.gz; \
+	# curl -sSL ${GOCRON_NODE_DOWNLOAD_URL} -o gocron-node.tar.gz; \
+	# tar -xvf gocron-node.tar.gz; \
+	curl -sSL ${CERTSTRAP_DOWNLOAD_URL} -o certstrap; \
+	chmod +x certstrap; \
+	chown -R root:root .
