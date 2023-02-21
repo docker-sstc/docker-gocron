@@ -64,8 +64,6 @@ RUN set -e; \
 
 ENTRYPOINT ["tini", "--"]
 
-# COPY --from=builder /tmp/gocron-linux-amd64/gocron /gocron/gocron
-# COPY --from=builder /tmp/gocron-node-linux-amd64/gocron-node /gocron/gocron-node
 COPY --from=builder /tmp/gocron/bin/gocron /gocron/gocron
 COPY --from=builder /tmp/gocron/bin/gocron-node /gocron/gocron-node
 COPY --from=builder /tmp/certstrap /gocron/certstrap

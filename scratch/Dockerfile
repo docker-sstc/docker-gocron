@@ -31,7 +31,6 @@ RUN set -ex; \
 
 FROM scratch
 
-# COPY --from=builder /tmp/gocron-linux-amd64/gocron /gocron/gocron
 COPY --from=builder /tmp/gocron/bin/gocron /gocron/gocron
 
 WORKDIR /gocron
