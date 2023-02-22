@@ -1,4 +1,4 @@
-ENV TARGETARCH
+ARG TARGETARCH
 RUN set -ex; \
 	cd gocron; \
 	yarn config set ignore-engines true; \
