@@ -20,14 +20,16 @@ RUN set -ex; \
 	# curl -sSL ${GOCRON_SOURCE_DOWNLOAD_URL} -o gocron.tar.gz; \
 	# tar -xvf gocron.tar.gz; \
 	cd gocron
+ENV TARGETARCH
 RUN set -ex; \
 	cd gocron; \
 	yarn config set ignore-engines true; \
 	make install-vue; \
 	make build-vue; \
 	make statik; \
-	CGO_ENABLED=0 make gocron; \
-	CGO_ENABLED=0 make node
+	echo "Current arch: $TARGETARCH"; \
+	GOARCH=$TARGETARCH CGO_ENABLED=0 make gocron; \
+	GOARCH=$TARGETARCH CGO_ENABLED=0 make node
 RUN set -ex; \
 	# curl -sSL ${GOCRON_DOWNLOAD_URL} -o gocron.tar.gz; \
 	# tar -xvf gocron.tar.gz; \
