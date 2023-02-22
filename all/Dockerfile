@@ -20,7 +20,7 @@ RUN set -ex; \
 	# curl -sSL ${GOCRON_SOURCE_DOWNLOAD_URL} -o gocron.tar.gz; \
 	# tar -xvf gocron.tar.gz; \
 	cd gocron
-ENV TARGETARCH
+ARG TARGETARCH
 RUN set -ex; \
 	cd gocron; \
 	yarn config set ignore-engines true; \
