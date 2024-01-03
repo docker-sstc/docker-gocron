@@ -1,11 +1,11 @@
-FROM golang:1.15 as builder
+FROM golang:1.18 as builder
 
 ENV GOCRON_VERSION=1.5.3
 ENV GOCRON_SOURCE_DOWNLOAD_URL=https://github.com/ouqiang/gocron/archive/refs/tags/v${GOCRON_VERSION}.tar.gz
 ENV GOCRON_DOWNLOAD_URL=https://github.com/ouqiang/gocron/releases/download/v${GOCRON_VERSION}/gocron-node-v${GOCRON_VERSION}-linux-amd64.tar.gz
 ENV GOCRON_NODE_DOWNLOAD_URL=https://github.com/ouqiang/gocron/releases/download/v${GOCRON_VERSION}/gocron-v${GOCRON_VERSION}-linux-amd64.tar.gz
-ENV CERTSTRAP_VERSION=1.2.0
-ENV CERTSTRAP_DOWNLOAD_URL=https://github.com/square/certstrap/releases/download/v${CERTSTRAP_VERSION}/certstrap-${CERTSTRAP_VERSION}-linux-amd64
+ENV CERTSTRAP_VERSION=1.3.0
+ENV CERTSTRAP_DOWNLOAD_URL=https://github.com/square/certstrap/releases/download/v${CERTSTRAP_VERSION}/certstrap-linux-amd64
 
 WORKDIR /tmp
 RUN set -ex; \
