@@ -1,4 +1,4 @@
-FROM golang:1.18 as builder
+FROM golang:1.19 as builder
 
 ENV GOCRON_VERSION=1.5.3
 ENV GOCRON_SOURCE_DOWNLOAD_URL=https://github.com/ouqiang/gocron/archive/refs/tags/v${GOCRON_VERSION}.tar.gz
